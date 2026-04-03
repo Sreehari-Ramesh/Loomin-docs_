@@ -1,0 +1,2 @@
+﻿{"question":"What are the onboarding probation details?","must_include":["probation"],"max_hallucination_ratio":0.35}
+{"question":"How should API keys be handled according to policy?","must_include":["api","key"],"max_hallucination_ratio":0.35}

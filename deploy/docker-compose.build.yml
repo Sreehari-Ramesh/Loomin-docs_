@@ -1,0 +1,15 @@
+﻿version: "3.9"
+
+services:
+  backend:
+    image: loomin-backend:latest
+    build:
+      context: ../backend
+
+  frontend:
+    image: loomin-frontend:latest
+    build:
+      context: ../frontend
+
+  ollama:
+    image: ollama/ollama:latest

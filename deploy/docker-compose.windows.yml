@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  backend:
+    image: loomin-backend:latest
+    container_name: loomin-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+      - DATA_DIR=/app/data
+      - DB_PATH=/app/data/loomin.db
+      - FAISS_INDEX_PATH=/app/data/faiss.index
+      - UPLOADS_DIR=/app/data/uploads
+    volumes:
+      - loomin-backend-data:/app/data
+    depends_on:
+      - ollama
+
+  frontend:
+    image: loomin-frontend:latest
+    container_name: loomin-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: loomin-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - loomin-ollama-data:/root/.ollama
+
+volumes:
+  loomin-backend-data:
+  loomin-ollama-data:
